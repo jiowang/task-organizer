@@ -4,7 +4,8 @@ import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-d
 import Home from './pages/Home.js';
 import About from './pages/About.js'
 import Login from './pages/Login.js';
-import MasterList from './pages/MasterList.js';
+import MyLists from './pages/MyLists.js';
+import MyList from './pages/users/MyList.js'
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import Footer from './shared/components/Footer';
 
@@ -25,7 +26,10 @@ const App = () => {
           <Login />
         </Route>
         <Route path='/:userId/myLists' exact>
-          <MasterList/>
+          <MyLists/>
+        </Route>
+        <Route path='/:userId/myLists/:listId' exact>
+          <MyList/>
         </Route>
         <Redirect to='/home' />
       </Switch>

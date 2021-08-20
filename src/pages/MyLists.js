@@ -1,51 +1,52 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import MyLists from './users/MyLists.js';
+import { NavLink } from 'react-router-dom';
+import MyList from './users/MyList.js';
 
 let MASTERLIST = [
     {
-        id: 'l1',
+        listId: 'l1',
         userId: 'u1',
         name: 'TheChosenWang',
         title: 'Costco Shopping List',
         listItems: [
             {
-                key: '#1',
+                contentId: '#1',
                 content: 'A carton of eggs.',
             },
             {
-                key: '#2',
+                contentId: '#2',
                 content: 'Chicken Breasts.'
             },
             {
-                key: '#3',
+                contentId: '#3',
                 content: 'Milk.'
             }
         ]
     },
     {
-        id: 'l2',
+        listId: 'l2',
         userId: 'u2',
         name: 'NotChosenWang',
         title: 'Walmart Shopping List',
         listItems: [
             {
-                key: '#1',
+                contentId: '#1',
                 content: 'Cheese.',
             },
             {
-                key: '#2',
+                contentId: '#2',
                 content: 'Flour.'
             },
             {
-                key: '#3',
+                contentId: '#3',
                 content: 'Water Filters.'
             }
         ]
     }
 ]
 
-const MasterList = props => {
+const MyLists = props => {
     
     const userId = useParams().userId;
 
@@ -63,10 +64,10 @@ const MasterList = props => {
         <h2>Number of lists: {userMasterList.length}</h2>
         <ul>
             {userMasterList.map(eachWholeList => (
-                <MyLists eachWholeList={eachWholeList}/>
+                <NavLink to={`/${userId}/myLists/${eachWholeList.listId}`}>{eachWholeList.title}</NavLink>
             ))}
         </ul>
    </React.Fragment>);
 };
 
-export default MasterList;
+export default MyLists;
