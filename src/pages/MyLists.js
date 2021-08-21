@@ -1,7 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import MyList from './users/MyList.js';
 
 let MASTERLIST = [
     {

@@ -14,7 +14,7 @@ import './App.css';
 const App = () => {
   return (
     <Router>
-      {/* <MainNavigation /> */}
+      <MainNavigation />
       <Switch>
         <Route path='/home' exact>
           <Home />
@@ -33,7 +33,7 @@ const App = () => {
         </Route>
         <Redirect to='/home' />
       </Switch>
-      {/* <Footer /> */}
+      <Footer />
     </Router>
   );
 };
