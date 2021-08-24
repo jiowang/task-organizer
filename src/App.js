@@ -5,7 +5,8 @@ import Home from './pages/Home.js';
 import About from './pages/About.js'
 import Login from './pages/Login.js';
 import MyLists from './pages/MyLists.js';
-import MyList from './pages/users/MyList.js'
+import MyList from './pages/lists/MyList.js'
+import EditMyList from './pages/lists/EditMyList.js';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import Footer from './shared/components/Footer';
 
@@ -30,6 +31,9 @@ const App = () => {
         </Route>
         <Route path='/:userId/myLists/:listId' exact>
           <MyList/>
+        </Route>
+        <Route path='/:userId/myLists/:listId/edit' exact>
+          <EditMyList/>
         </Route>
         <Redirect to='/home' />
       </Switch>

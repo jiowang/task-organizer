@@ -44,7 +44,7 @@ let MASTERLIST = [
     }
 ]
 
-const MyList = props => {
+const EditMyList = props => {
     const userId = useParams().userId;
     const listId = useParams().listId;
 
@@ -62,22 +62,18 @@ const MyList = props => {
     }
 
     return (
-    <React.Fragment>
-    <ul>
-        {wantedList.listItems.map(item => (
-            <li>
-                {item.content}
-                <button className="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i className="fa fa-edit"></i></button>
-                <button className="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i className="fa fa-trash"></i></button>
-            </li>
-        ))}
-    </ul>
-
-
-    <button className="btn btn-primary btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Add"><i className="fa fa-plus"></i></button>
-    
-    </React.Fragment>
+        <React.Fragment>
+        <form>
+            <ul>
+            {wantedList.listItems.map(item => (
+                <li>
+                    {item.content}
+                </li>
+            ))}
+            </ul>
+        </form>
+        </React.Fragment>
     );
 };
 
-export default MyList;
+export default EditMyList;
