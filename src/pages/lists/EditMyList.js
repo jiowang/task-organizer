@@ -1,5 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
+
+import Input from '../../shared/components/Input'
 
 let MASTERLIST = [
     {
@@ -9,15 +12,15 @@ let MASTERLIST = [
         title: 'Costco Shopping List',
         listItems: [
             {
-                contentId: '#1',
+                contentId: 'c1',
                 content: 'A carton of eggs.',
             },
             {
-                contentId: '#2',
+                contentId: 'c2',
                 content: 'Chicken Breasts.'
             },
             {
-                contentId: '#3',
+                contentId: 'c3',
                 content: 'Milk.'
             }
         ]
@@ -29,24 +32,30 @@ let MASTERLIST = [
         title: 'Walmart Shopping List',
         listItems: [
             {
-                contentId: '#1',
+                contentId: 'c1',
                 content: 'Cheese.',
             },
             {
-                contentId: '#2',
+                contentId: 'c2',
                 content: 'Flour.'
             },
             {
-                contentId: '#3',
+                contentId: 'c3',
                 content: 'Water Filters.'
             }
         ]
     }
 ]
 
+const updateContentHandler = event => {
+    event.preventDefault();
+}
+
 const EditMyList = props => {
+
     const userId = useParams().userId;
     const listId = useParams().listId;
+    const contentId = useParams().contentId;
 
     const wantedList = MASTERLIST.find(item => (
         item.userId === userId && item.listId === listId
@@ -61,15 +70,27 @@ const EditMyList = props => {
         return <h1>There are no items in this list.</h1>;
     }
 
+    let editList = []
+
+    for (let i = 0; i < wantedList.listItems.length; i++) {
+        if (wantedList.listItems[i].contentId === contentId) {
+            editList.push(
+                <React.Fragment>
+                    <Input id={wantedList.listItems[i].contentId} initialValue={wantedList.listItems[i].content} isValid={true} />
+                <NavLink to={`/${userId}/myLists/${wantedList.listId}`}>
+                    <input type="submit" value="Submit" />
+                </NavLink>
+                </React.Fragment>)  
+        } else {
+            editList.push(<li>{wantedList.listItems[i].content}</li>);
+        }
+    }
+
     return (
         <React.Fragment>
-        <form>
+        <form onSubmit={updateContentHandler}>
             <ul>
-            {wantedList.listItems.map(item => (
-                <li>
-                    {item.content}
-                </li>
-            ))}
+                {editList}
             </ul>
         </form>
         </React.Fragment>

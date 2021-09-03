@@ -29,11 +29,11 @@ const App = () => {
         <Route path='/:userId/myLists' exact>
           <MyLists/>
         </Route>
+        <Route path='/:userId/myLists/:listId/:contentId' exact>
+          <EditMyList/>
+        </Route>
         <Route path='/:userId/myLists/:listId' exact>
           <MyList/>
-        </Route>
-        <Route path='/:userId/myLists/:listId/edit' exact>
-          <EditMyList/>
         </Route>
         <Redirect to='/home' />
       </Switch>

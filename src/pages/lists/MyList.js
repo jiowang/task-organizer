@@ -10,15 +10,15 @@ let MASTERLIST = [
         title: 'Costco Shopping List',
         listItems: [
             {
-                contentId: '#1',
+                contentId: 'c1',
                 content: 'A carton of eggs.',
             },
             {
-                contentId: '#2',
+                contentId: 'c2',
                 content: 'Chicken Breasts.'
             },
             {
-                contentId: '#3',
+                contentId: 'c3',
                 content: 'Milk.'
             }
         ]
@@ -30,15 +30,15 @@ let MASTERLIST = [
         title: 'Walmart Shopping List',
         listItems: [
             {
-                contentId: '#1',
+                contentId: 'c1',
                 content: 'Cheese.',
             },
             {
-                contentId: '#2',
+                contentId: 'c2',
                 content: 'Flour.'
             },
             {
-                contentId: '#3',
+                contentId: 'c3',
                 content: 'Water Filters.'
             }
         ]
@@ -69,7 +69,7 @@ const MyList = props => {
             <li>
                 {item.content}
                 <NavLink
-                    to={`/${userId}/myLists/${wantedList.listId}/edit`}
+                    to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
                     className="btn btn-success btn-sm rounded-0"
                     type="button"
                     data-toggle="tooltip"
