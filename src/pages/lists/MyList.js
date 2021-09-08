@@ -64,6 +64,8 @@ const MyList = props => {
 
     return (
     <React.Fragment>
+    <section className="page-section" id="mylist">
+    <div className="container masthead">
     <ul>
         {wantedList.listItems.map(item => (
             <li>
@@ -97,7 +99,8 @@ const MyList = props => {
         title="Add">
             <i className="fa fa-plus"></i>
     </button>
-    
+    </div>
+    </section>
     </React.Fragment>
     );
 };

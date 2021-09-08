@@ -59,6 +59,8 @@ const MyLists = props => {
 
     return (
     <React.Fragment>
+    <section className="page-section" id="mylists">
+    <div className="container masthead">
         <h2>Name: {userMasterList[0].name}</h2>
         <h2>Number of lists: {userMasterList.length}</h2>
         <ul>
@@ -66,6 +68,8 @@ const MyLists = props => {
                 <NavLink to={`/${userId}/myLists/${eachWholeList.listId}`}>{eachWholeList.title}</NavLink>
             ))}
         </ul>
+    </div>
+    </section>
    </React.Fragment>);
 };
 

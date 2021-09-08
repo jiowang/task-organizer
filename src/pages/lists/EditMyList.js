@@ -47,10 +47,6 @@ let MASTERLIST = [
     }
 ]
 
-const updateContentHandler = event => {
-    event.preventDefault();
-}
-
 const EditMyList = props => {
 
     const userId = useParams().userId;
@@ -70,6 +66,16 @@ const EditMyList = props => {
         return <h1>There are no items in this list.</h1>;
     }
 
+    const updateContentHandler = event => {
+        event.preventDefault();
+        for (let i = 0; i < wantedList.listItems.length; i++) {
+            if (wantedList.listItems[i].contentId === contentId) {
+                wantedList.listItems[i].content = document.getElementById(contentId).value;
+                console.log(wantedList.listItems[i].content);
+            }
+        }
+    }
+
     let editList = []
 
     for (let i = 0; i < wantedList.listItems.length; i++) {
@@ -80,6 +86,9 @@ const EditMyList = props => {
                 <NavLink to={`/${userId}/myLists/${wantedList.listId}`}>
                     <input type="submit" value="Submit" />
                 </NavLink>
+                <NavLink to={`/${userId}/myLists/${wantedList.listId}`}>
+                    <input type="button" value="Cancel" />
+                </NavLink>
                 </React.Fragment>)  
         } else {
             editList.push(<li>{wantedList.listItems[i].content}</li>);
@@ -88,11 +97,15 @@ const EditMyList = props => {
 
     return (
         <React.Fragment>
-        <form onSubmit={updateContentHandler}>
+        <section className="page-section" id="mylist">
+        <div className="container masthead">
+        <form onSubmit={updateContentHandler} required>
             <ul>
                 {editList}
             </ul>
         </form>
+        </div>
+        </section>
         </React.Fragment>
     );
 };
