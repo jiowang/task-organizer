@@ -3,6 +3,7 @@ import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
 import Input from '../../shared/components/Input'
+import SpacingWrapper from '../../shared/components/UIElements/SpacingWrapper';
 
 let MASTERLIST = [
     {
@@ -97,11 +98,9 @@ const EditContent = props => {
 
     return (
         <React.Fragment>
-            <section className="page-section" id="editcontent">
-                <div className="container masthead">
-                    <h2>EditContent</h2>
-                </div>
-            </section>
+            <SpacingWrapper>
+                <h2>EditContent</h2>
+            </SpacingWrapper>
         </React.Fragment>
     );
 };

@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+import SpacingWrapper from '../../shared/components/UIElements/SpacingWrapper';
+
 let MASTERLIST = [
     {
         listId: 'l1',
@@ -115,44 +117,42 @@ const MyList = props => {
 
     return (
     <React.Fragment>
-    <section className="page-section" id="mylist">
-    <div className="container masthead">
-    <ul>
-        {wantedList.listItems.map(item => (
-            <li>
-                {item.content}
-                <NavLink
-                    to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
-                    className="btn btn-success btn-sm rounded-0"
-                    type="button"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Edit">
-                        <i className="fa fa-edit"></i>
-                </NavLink>
-                <button 
-                    className="btn btn-danger btn-sm rounded-0"
-                    type="button"
-                    data-toggle="tooltip"
-                    data-placement="top"
-                    title="Delete"
-                    onClick={deleteListHandler}>
-                        <i className="fa fa-trash"></i>
-                </button>
-            </li>
-        ))}
-    </ul>
+        <SpacingWrapper>
+            <ul>
+                {wantedList.listItems.map(item => (
+                    <li>
+                        {item.content}
+                        <NavLink
+                            to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
+                            className="btn btn-success btn-sm rounded-0"
+                            type="button"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Edit">
+                                <i className="fa fa-edit"></i>
+                        </NavLink>
+                        <button 
+                            className="btn btn-danger btn-sm rounded-0"
+                            type="button"
+                            data-toggle="tooltip"
+                            data-placement="top"
+                            title="Delete"
+                            onClick={deleteListHandler}>
+                                <i className="fa fa-trash"></i>
+                        </button>
+                    </li>
+                ))}
+            </ul>
 
-    <button
-        className="btn btn-primary btn-sm rounded-0"
-        type="button"
-        data-toggle="tooltip"
-        data-placement="top"
-        title="Add">
-            <i className="fa fa-plus"></i>
-    </button>
-    </div>
-    </section>
+            <button
+                className="btn btn-primary btn-sm rounded-0"
+                type="button"
+                data-toggle="tooltip"
+                data-placement="top"
+                title="Add">
+                    <i className="fa fa-plus"></i>
+            </button>
+       </SpacingWrapper>
     </React.Fragment>
     );
 };

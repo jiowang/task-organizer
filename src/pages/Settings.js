@@ -1,13 +1,13 @@
 import React from 'react';
 
+import SpacingWrapper from '../shared/components/UIElements/SpacingWrapper';
+
 const Settings = props => {
     return (
     <React.Fragment>
-        <section className="page-section" id="settings">
-            <div className="container masthead">
-                <h1>Settings</h1>
-            </div>
-        </section>
+        <SpacingWrapper>
+            <h1>Settings</h1>
+        </SpacingWrapper>
     </React.Fragment>
     );
 };

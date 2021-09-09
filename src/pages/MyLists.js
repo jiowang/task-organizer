@@ -2,6 +2,8 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 
+import SpacingWrapper from '../shared/components/UIElements/SpacingWrapper';
+
 let MASTERLIST = [
     {
         listId: 'l1',
@@ -59,18 +61,17 @@ const MyLists = props => {
 
     return (
     <React.Fragment>
-    <section className="page-section" id="mylists">
-    <div className="container masthead">
-        <h2>Name: {userMasterList[0].name}</h2>
-        <h2>Number of lists: {userMasterList.length}</h2>
-        <ul>
-            {userMasterList.map(eachWholeList => (
-                <NavLink to={`/${userId}/myLists/${eachWholeList.listId}`}>{eachWholeList.title}</NavLink>
-            ))}
-        </ul>
-    </div>
-    </section>
-   </React.Fragment>);
+        <SpacingWrapper>
+            <h2>Name: {userMasterList[0].name}</h2>
+            <h2>Number of lists: {userMasterList.length}</h2>
+            <ul>
+                {userMasterList.map(eachWholeList => (
+                    <NavLink to={`/${userId}/myLists/${eachWholeList.listId}`}>{eachWholeList.title}</NavLink>
+                ))}
+            </ul>
+
+        </SpacingWrapper>
+    </React.Fragment>);
 };
 
 export default MyLists;
