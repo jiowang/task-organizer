@@ -45,6 +45,10 @@ let MASTERLIST = [
     }
 ]
 
+const deleteListHandler = props => {
+    alert('Deleting list to be implemented...');
+}
+
 const MyList = props => {
     const userId = useParams().userId;
     const listId = useParams().listId;
@@ -84,7 +88,8 @@ const MyList = props => {
                     type="button"
                     data-toggle="tooltip"
                     data-placement="top"
-                    title="Delete">
+                    title="Delete"
+                    onClick={deleteListHandler}>
                         <i className="fa fa-trash"></i>
                 </button>
             </li>

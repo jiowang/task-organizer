@@ -47,7 +47,7 @@ let MASTERLIST = [
     }
 ]
 
-const EditMyList = props => {
+const EditContent = props => {
 
     const userId = useParams().userId;
     const listId = useParams().listId;
@@ -97,17 +97,13 @@ const EditMyList = props => {
 
     return (
         <React.Fragment>
-        <section className="page-section" id="mylist">
-        <div className="container masthead">
-        <form onSubmit={updateContentHandler} required>
-            <ul>
-                {editList}
-            </ul>
-        </form>
-        </div>
-        </section>
+            <section className="page-section" id="editcontent">
+                <div className="container masthead">
+                    <h2>EditContent</h2>
+                </div>
+            </section>
         </React.Fragment>
     );
 };
 
-export default EditMyList;
+export default EditContent;
