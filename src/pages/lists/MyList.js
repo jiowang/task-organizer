@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import SpacingWrapper from '../../shared/components/UIElements/SpacingWrapper';
 
@@ -122,7 +122,7 @@ const MyList = props => {
                 {wantedList.listItems.map(item => (
                     <li>
                         {item.content}
-                        <NavLink
+                        <Link
                             to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
                             className="btn btn-success btn-sm rounded-0"
                             type="button"
@@ -130,7 +130,7 @@ const MyList = props => {
                             data-placement="top"
                             title="Edit">
                                 <i className="fa fa-edit"></i>
-                        </NavLink>
+                        </Link>
                         <button 
                             className="btn btn-danger btn-sm rounded-0"
                             type="button"
@@ -144,14 +144,15 @@ const MyList = props => {
                 ))}
             </ul>
 
-            <button
+            <Link
+                to={`/${userId}/myLists/${wantedList.listId}/new`}
                 className="btn btn-primary btn-sm rounded-0"
                 type="button"
                 data-toggle="tooltip"
                 data-placement="top"
                 title="Add">
                     <i className="fa fa-plus"></i>
-            </button>
+            </Link>
        </SpacingWrapper>
     </React.Fragment>
     );

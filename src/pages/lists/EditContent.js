@@ -69,12 +69,7 @@ const EditContent = props => {
 
     const updateContentHandler = event => {
         event.preventDefault();
-        for (let i = 0; i < wantedList.listItems.length; i++) {
-            if (wantedList.listItems[i].contentId === contentId) {
-                wantedList.listItems[i].content = document.getElementById(contentId).value;
-                console.log(wantedList.listItems[i].content);
-            }
-        }
+        alert("submit")
     }
 
     let editList = []
@@ -84,9 +79,7 @@ const EditContent = props => {
             editList.push(
                 <React.Fragment>
                     <Input id={wantedList.listItems[i].contentId} initialValue={wantedList.listItems[i].content} isValid={true} />
-                <NavLink to={`/${userId}/myLists/${wantedList.listId}`}>
                     <input type="submit" value="Submit" />
-                </NavLink>
                 <NavLink to={`/${userId}/myLists/${wantedList.listId}`}>
                     <input type="button" value="Cancel" />
                 </NavLink>
@@ -99,7 +92,9 @@ const EditContent = props => {
     return (
         <React.Fragment>
             <SpacingWrapper>
-                <h2>EditContent</h2>
+                <form onSubmit={updateContentHandler}>
+                    {editList}
+                </form>
             </SpacingWrapper>
         </React.Fragment>
     );
