@@ -5,6 +5,8 @@ import { NavLink } from 'react-router-dom';
 import SpacingWrapper from '../../shared/components/UIElements/SpacingWrapper';
 
 const AddList = props => {
+    const userId = useParams().userId;
+
     return (
     <React.Fragment>
         <SpacingWrapper>

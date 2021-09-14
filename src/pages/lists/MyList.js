@@ -2,7 +2,9 @@ import React from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import ListContent from './ListContent';
 import SpacingWrapper from '../../shared/components/UIElements/SpacingWrapper';
+import listStyles from './ListTemplate.module.css';
 
 let MASTERLIST = [
     {
@@ -108,42 +110,20 @@ const MyList = props => {
 
 
     if (!wantedList) {
-        return <h1>The list does not exist.</h1>;
+        return (
+        <SpacingWrapper>
+            <h1>The list does not exist.</h1>
+            <Link to={`/${userId}/myLists`}>
+                <input type='button' value='Back'></input>
+            </Link>
+        </SpacingWrapper>
+        );
     };
 
     if (wantedList.listItems.length === 0) {
-        return <h1>There are no items in this list.</h1>;
-    }
-
-    return (
-    <React.Fragment>
+        return (
         <SpacingWrapper>
-            <ul>
-                {wantedList.listItems.map(item => (
-                    <li>
-                        {item.content}
-                        <Link
-                            to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
-                            className="btn btn-success btn-sm rounded-0"
-                            type="button"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Edit">
-                                <i className="fa fa-edit"></i>
-                        </Link>
-                        <button 
-                            className="btn btn-danger btn-sm rounded-0"
-                            type="button"
-                            data-toggle="tooltip"
-                            data-placement="top"
-                            title="Delete"
-                            onClick={deleteListHandler}>
-                                <i className="fa fa-trash"></i>
-                        </button>
-                    </li>
-                ))}
-            </ul>
-
+            <h1>There are no items in this list.</h1>
             <Link
                 to={`/${userId}/myLists/${wantedList.listId}/new`}
                 className="btn btn-primary btn-sm rounded-0"
@@ -153,7 +133,74 @@ const MyList = props => {
                 title="Add">
                     <i className="fa fa-plus"></i>
             </Link>
-       </SpacingWrapper>
+            <Link to={`/${userId}/myLists`}>
+                <input type='button' value='Back'></input>
+            </Link>
+        </SpacingWrapper>
+        );
+    }
+
+    return (
+    <React.Fragment>
+        <SpacingWrapper>
+            <body className={listStyles['list-body']}>
+                <div className={`row d-flex justify-content-center ${listStyles.container}`}>
+                <div className="col-md-8">
+                    <div className={`card-hover-shadow-2x mb-3 ${listStyles.card}`}>
+                        <div className={`${listStyles['card-header-tab']} ${listStyles['card-header']}`}>
+                            <div className={`${listStyles['card-header-title']} font-size-lg ${listStyles['text-capitalize']} font-weight-normal`}>
+                                <i className={`fa fa-tasks ${listStyles['list-i']}`}></i>&nbsp;{wantedList.title}</div>
+                        </div>
+                        <div className={listStyles['scroll-area-sm']}> {/* makes the scroll area bigger */}
+                            <perfect-scrollbar className="ps-show-limits">
+                                <div /*style={{position: "static"}} className="ps ps--active-y" */>
+                                    <div className="ps-content">
+                                        <ul className={`${listStyles['list-group']} list-group-flush`}>
+                                            {wantedList.listItems.map(item => (
+                                                    <ListContent heading={item.content} />
+                                                    /* <Link
+                                                        to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
+                                                        className="btn btn-success btn-sm rounded-0"
+                                                        type="button"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="Edit">
+                                                            <i className="fa fa-edit"></i>
+                                                    </Link>
+                                                    <button 
+                                                        className="btn btn-danger btn-sm rounded-0"
+                                                        type="button"
+                                                        data-toggle="tooltip"
+                                                        data-placement="top"
+                                                        title="Delete"
+                                                        onClick={deleteListHandler}>
+                                                            <i className="fa fa-trash"></i>
+                                                    </button> */
+                                            ))}
+                                        </ul>
+                                    </div>
+                                </div>
+                            </perfect-scrollbar>
+                        </div>
+                        <div class={`d-block text-right ${listStyles['card-footer']}`}>
+                            <Link
+                                to={`/${userId}/myLists`}
+                                className={`mr-2 ${listStyles.btn} btn-link btn-sm`}
+                            >
+                                Cancel
+                            </Link>
+                            <Link
+                                to={`/${userId}/myLists/${wantedList.listId}/new`}
+                                className={`${listStyles.btn} btn-primary`}
+                            >
+                                Add
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </body>
+        </SpacingWrapper>
     </React.Fragment>
     );
 };

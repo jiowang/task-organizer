@@ -103,8 +103,12 @@ const MyLists = props => {
     ));
 
     if (!userMasterList || userMasterList.length === 0) {
-        return <h1>No user found.</h1>;
-    }
+        return (
+        <SpacingWrapper>
+            <h1>No user found.</h1>
+        </SpacingWrapper>
+        );
+    };
 
     return (
     <React.Fragment>
