@@ -15,7 +15,7 @@ const indicator = [
 
 const ListContent = props => {
     return (
-        <body className={listStyles['list-body']}>
+        <body className={'list-body'}>
             <li className={listStyles['list-group-item']}>
                 {indicator[Math.floor(Math.random() * 4)]}
                 <div className={`${listStyles['widget-content']} p-0`}>
@@ -36,14 +36,14 @@ const ListContent = props => {
                             <div className="widget-heading">
                                 {props.heading} {props.badge && <div className="badge badge-danger ml-2">{props.badge}</div>}
                             </div>
-                            {props.subheading && <div className={listStyles['widget-subheading']}><i className={listStyles['list-i']}>{props.subheading}</i></div>}
+                            {props.subheading && <div className={listStyles['widget-subheading']}><i>{props.subheading}</i></div>}
                         </div>
                         <div className={listStyles['widget-content-right']}>
-                            <button className={`border-0 btn-transition ${listStyles.btn} ${listStyles['btn-outline-success']}`}>
-                                <i className={`fa fa-pencil ${listStyles['list-i']}`}></i>
+                            <button className={`border-0 btn-transition btn btn-outline-success`}>
+                                <i className={`fa fa-edit`}></i>
                             </button>
-                            <button className={`border-0 btn-transition ${listStyles.btn} btn-outline-danger`}>
-                                <i className={`fa fa-trash ${listStyles['list-i']}`}></i>
+                            <button className={`border-0 btn-transition btn btn-outline-danger`}>
+                                <i className={`fa fa-trash`}></i>
                             </button>
                         </div>
                     </div>

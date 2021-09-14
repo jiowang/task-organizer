@@ -143,21 +143,21 @@ const MyList = props => {
     return (
     <React.Fragment>
         <SpacingWrapper>
-            <body className={listStyles['list-body']}>
+            <body className='list-body'>
                 <div className={`row d-flex justify-content-center ${listStyles.container}`}>
                 <div className="col-md-8">
-                    <div className={`card-hover-shadow-2x mb-3 ${listStyles.card}`}>
-                        <div className={`${listStyles['card-header-tab']} ${listStyles['card-header']}`}>
-                            <div className={`${listStyles['card-header-title']} font-size-lg ${listStyles['text-capitalize']} font-weight-normal`}>
-                                <i className={`fa fa-tasks ${listStyles['list-i']}`}></i>&nbsp;{wantedList.title}</div>
+                    <div className={`card-hover-shadow-2x mb-3 card`}>
+                        <div className={`card-header-tab card-header`}>
+                            <div className={`card-header-title font-size-lg text-capitalize font-weight-normal`}>
+                                <i className={`fa fa-tasks`}></i>&nbsp;{wantedList.title}</div>
                         </div>
                         <div className={listStyles['scroll-area-sm']}> {/* makes the scroll area bigger */}
                             <perfect-scrollbar className="ps-show-limits">
-                                <div /*style={{position: "static"}} className="ps ps--active-y" */>
+                                <div style={{position: "static"}} className="ps ps--active-y" >
                                     <div className="ps-content">
                                         <ul className={`${listStyles['list-group']} list-group-flush`}>
                                             {wantedList.listItems.map(item => (
-                                                    <ListContent heading={item.content} />
+                                                    <ListContent heading={item.content} subheading="testing" badge="hello" />
                                                     /* <Link
                                                         to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
                                                         className="btn btn-success btn-sm rounded-0"
@@ -182,16 +182,16 @@ const MyList = props => {
                                 </div>
                             </perfect-scrollbar>
                         </div>
-                        <div class={`d-block text-right ${listStyles['card-footer']}`}>
+                        <div class="d-block text-right card-footer">
                             <Link
                                 to={`/${userId}/myLists`}
-                                className={`mr-2 ${listStyles.btn} btn-link btn-sm`}
+                                className={`mr-2 btn btn-link btn-sm`}
                             >
                                 Cancel
                             </Link>
                             <Link
                                 to={`/${userId}/myLists/${wantedList.listId}/new`}
-                                className={`${listStyles.btn} btn-primary`}
+                                className={`btn btn-primary`}
                             >
                                 Add
                             </Link>
