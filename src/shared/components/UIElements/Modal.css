@@ -2,7 +2,8 @@
     z-index: 10000;
     position: fixed;
     top: 22vh;
-    left: 10%;
+    left: 50%;
+    transform: translate(-50%);
     width: 80%;
     background: white;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
@@ -10,23 +11,20 @@
   }
 
 .custom-modal-enter {
-transform: translateY(-10rem);
-opacity: 0;
+    opacity: 0;
 }
 
 .custom-modal-enter-active {
-transform: translateY(0);
-opacity: 1;
-transition: all 200ms;
+    opacity: 1;
+    transition: opacity 300ms, transform 300ms;
 }
 
 .custom-modal-exit {
-transform: translateY(0);
-opacity: 1;
+    opacity: 1;
 }
 
 .custom-modal-exit-active {
-transform: translateY(-10rem);
-opacity: 0;
-transition: all 200ms;
+    opacity: 0;
+    transform: scale(0.9);
+    transition: opacity 300ms, transform 300ms;
 }
