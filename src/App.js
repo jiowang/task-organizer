@@ -13,6 +13,9 @@ import EditContent from './pages/lists/EditContent.js';
 import MainNavigation from './shared/components/Navigation/MainNavigation';
 import Footer from './shared/components/Footer';
 
+import Test from './DELETE/Test.js';
+
+
 import './App.css';
 
 const App = () => {
@@ -47,6 +50,11 @@ const App = () => {
         <Route path='/:userId/myLists/:listId' exact>
           <MyList />
         </Route>
+
+        <Route path='/test' exact>
+          <Test />
+        </Route>
+
         <Redirect to='/home' />
       </Switch>
       <Footer />
