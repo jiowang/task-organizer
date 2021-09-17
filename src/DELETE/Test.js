@@ -17,7 +17,9 @@ const Test = props => {
             onCancel={closeModal}
             title="The title"
         >
+            <label>label</label>
             blah blah blah.....
+            
         </ Modal>
         <button type="button" class="btn btn-primary" onClick={openModal}>
             Launch demo modal

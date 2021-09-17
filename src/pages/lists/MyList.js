@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import { useForm } from '../../shared/hooks/form-hook';
+import { VALIDATOR_REQUIRE } from '../../shared/util/validators';
+
+import Input from '../../shared/Form/Input';
 import Modal from '../../shared/components/UIElements/Modal';
 import ListContent from './ListContent';
 import SpacingWrapper from '../../shared/components/UIElements/SpacingWrapper';
 import listStyles from './ListTemplate.module.css';
+import '../../shared/Form/PlaceForm.css'
+
 
 let MASTERLIST = [
     {
@@ -102,33 +108,56 @@ const MyList = props => {
     const [openDeleteWarning, setOpenDeleteWarning ] = useState(false);
     const [openAddContent, setOpenAddContent ] = useState(false);
 
-    const openEditHandler = props => {
+    const [formState, inputHandler, setFormData] = useForm(
+        {
+            content: {
+                value: '',
+                isValid: false
+            }
+        },
+        false
+    );
+
+    const openEditHandler = useCallback((contentId, listId, userId) => {
+        const wantedList = MASTERLIST.find(list => list.listId === listId && list.userId === userId);
+        const wantedContent = wantedList.listItems.find(content => content.contentId === contentId);
+        if (wantedContent) {
+            setFormData(
+                {
+                    content: {
+                        value: wantedContent.content,
+                        isValid: true
+                    }
+                },
+                true
+            );
+        };
         setOpenEdit(true);
-    }
+    }, [setFormData]);
     
-    const closeEditHandler = props => {
+    const closeEditHandler = useCallback((props) => {
         setOpenEdit(false);
-    }
+    }, []);
     
-    const openDeleteWarningHandler = props => {
+    const openDeleteWarningHandler = useCallback((props) => {
         setOpenDeleteWarning(true);
-    }
+    }, []);
     
-    const closeDeleteWarningHandler = props => {
+    const closeDeleteWarningHandler = useCallback((props) => {
         setOpenDeleteWarning(false);
-    }
+    }, []);
     
-    const deleteListHandler = props => {
+    const deleteListHandler = useCallback((props) => {
         alert('Deleting list to be implemented...');
-    }
+    }, []);
 
-    const openAddContentHandler = props => {
+    const openAddContentHandler = useCallback((props) => {
         setOpenAddContent(true);
-    }
+    }, []);
 
-    const closeAddContentHandler = props => {
+    const closeAddContentHandler = useCallback((props) => {
         setOpenAddContent(false);
-    }
+    }, []);
 
     const userId = useParams().userId;
     const listId = useParams().listId;
@@ -190,7 +219,7 @@ const MyList = props => {
                                                         heading={item.content}
                                                         subheading="testing"
                                                         badge="hello" 
-                                                        openEditHandler={openEditHandler}
+                                                        openEditHandler={() => {openEditHandler(item.contentId, wantedList.listId, wantedList.userId)}}
                                                         openDeleteHandler={openDeleteWarningHandler}
                                                     />
                                             ))}
@@ -219,20 +248,47 @@ const MyList = props => {
             </body>
         </SpacingWrapper>
         
-        {openEdit &&
+
         <Modal>
 
-        </Modal>}
+        </Modal>
 
-        {openDeleteWarning &&
-        <Modal>
+        <Modal
+            title="Content"    
+            show={openEdit}
+            onCancel={closeEditHandler}    
+        >
+            <form>
+                <Input
+                    id="content"
+                    element="input"
+                    type="text"
+                    label="Content"
+                    validators={[VALIDATOR_REQUIRE()]}
+                    errorText="The field cannot be empty."
+                    onInput={inputHandler}
+                    initialValue={formState.inputs.content.value}
+                    initialValid={true}
+                />
+            </form>
+        </Modal>
 
-        </Modal>}
-
-        {openAddContent &&
-        <Modal>
-
-        </Modal>}
+        <Modal 
+            show={openAddContent}
+            onCancel={closeAddContentHandler}    
+        >
+            <form>
+                <Input
+                    id="content"
+                    element="input"
+                    type="text"
+                    label="Content"
+                    validators={[VALIDATOR_REQUIRE()]}
+                    errorText="The field cannot be empty."
+                    onInput={inputHandler}
+                />
+            </form>
+        </Modal>
 
     </React.Fragment>
     );

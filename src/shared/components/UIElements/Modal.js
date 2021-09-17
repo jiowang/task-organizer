@@ -11,7 +11,7 @@ const ModalOverlay = props => {
          <div className="custom-modal modal-dialog">
             <div className="modal-content">
                 <div className="modal-header">
-                    <h5 className="modal-title" id="exampleModalLabel">{props.title}</h5>
+                    <h5 className="modal-title">{props.title}</h5>
                     <button type="button" className="close" aria-label="Close" onClick={props.onCancel}>
                     <span aria-hidden="false">&times;</span>
                     </button>
