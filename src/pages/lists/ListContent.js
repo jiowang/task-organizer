@@ -10,8 +10,8 @@ const indicator = [
     // <div className={`${listStyles['todo-indicator'] bg-focus'}></div>,
 ];
 
-// Requires: props.heading
-// Optional: props.badge, props.subheading
+// Requires: props.heading, props.openEditHandler, props.openDeleteHandler
+// Optional: props.badge, props.subheading, props.closeEditHandler, props.closeDeleteHandler
 
 const ListContent = props => {
     return (
@@ -39,10 +39,16 @@ const ListContent = props => {
                             {props.subheading && <div className={listStyles['widget-subheading']}><i>{props.subheading}</i></div>}
                         </div>
                         <div className={listStyles['widget-content-right']}>
-                            <button className={`border-0 btn-transition btn btn-outline-success`}>
+                            <button 
+                                className={`border-0 btn-transition btn btn-outline-success`}
+                                onClick={props.openEditHandler}
+                            >
                                 <i className={`fa fa-edit`}></i>
                             </button>
-                            <button className={`border-0 btn-transition btn btn-outline-danger`}>
+                            <button 
+                                className={`border-0 btn-transition btn btn-outline-danger`}
+                                onClick={props.openDeleteHandler}
+                            >
                                 <i className={`fa fa-trash`}></i>
                             </button>
                         </div>

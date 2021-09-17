@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
+import Modal from '../../shared/components/UIElements/Modal';
 import ListContent from './ListContent';
 import SpacingWrapper from '../../shared/components/UIElements/SpacingWrapper';
 import listStyles from './ListTemplate.module.css';
@@ -96,11 +97,39 @@ let MASTERLIST = [
     }
 ]
 
-const deleteListHandler = props => {
-    alert('Deleting list to be implemented...');
-}
-
 const MyList = props => {
+    const [openEdit, setOpenEdit ] = useState(false);
+    const [openDeleteWarning, setOpenDeleteWarning ] = useState(false);
+    const [openAddContent, setOpenAddContent ] = useState(false);
+
+    const openEditHandler = props => {
+        setOpenEdit(true);
+    }
+    
+    const closeEditHandler = props => {
+        setOpenEdit(false);
+    }
+    
+    const openDeleteWarningHandler = props => {
+        setOpenDeleteWarning(true);
+    }
+    
+    const closeDeleteWarningHandler = props => {
+        setOpenDeleteWarning(false);
+    }
+    
+    const deleteListHandler = props => {
+        alert('Deleting list to be implemented...');
+    }
+
+    const openAddContentHandler = props => {
+        setOpenAddContent(true);
+    }
+
+    const closeAddContentHandler = props => {
+        setOpenAddContent(false);
+    }
+
     const userId = useParams().userId;
     const listId = useParams().listId;
 
@@ -157,25 +186,13 @@ const MyList = props => {
                                     <div className="ps-content">
                                         <ul className={`${listStyles['list-group']} list-group-flush`}>
                                             {wantedList.listItems.map(item => (
-                                                    <ListContent heading={item.content} subheading="testing" badge="hello" />
-                                                    /* <Link
-                                                        to={`/${userId}/myLists/${wantedList.listId}/${item.contentId}`}
-                                                        className="btn btn-success btn-sm rounded-0"
-                                                        type="button"
-                                                        data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        title="Edit">
-                                                            <i className="fa fa-edit"></i>
-                                                    </Link>
-                                                    <button 
-                                                        className="btn btn-danger btn-sm rounded-0"
-                                                        type="button"
-                                                        data-toggle="tooltip"
-                                                        data-placement="top"
-                                                        title="Delete"
-                                                        onClick={deleteListHandler}>
-                                                            <i className="fa fa-trash"></i>
-                                                    </button> */
+                                                    <ListContent
+                                                        heading={item.content}
+                                                        subheading="testing"
+                                                        badge="hello" 
+                                                        openEditHandler={openEditHandler}
+                                                        openDeleteHandler={openDeleteWarningHandler}
+                                                    />
                                             ))}
                                         </ul>
                                     </div>
@@ -189,18 +206,34 @@ const MyList = props => {
                             >
                                 Cancel
                             </Link>
-                            <Link
-                                to={`/${userId}/myLists/${wantedList.listId}/new`}
-                                className={`btn btn-primary`}
+                            <button
+                                onClick={openAddContentHandler}
+                                className='btn btn-primary'
                             >
                                 Add
-                            </Link>
+                            </button>
                         </div>
                     </div>
                 </div>
                 </div>
             </body>
         </SpacingWrapper>
+        
+        {openEdit &&
+        <Modal>
+
+        </Modal>}
+
+        {openDeleteWarning &&
+        <Modal>
+
+        </Modal>}
+
+        {openAddContent &&
+        <Modal>
+
+        </Modal>}
+
     </React.Fragment>
     );
 };

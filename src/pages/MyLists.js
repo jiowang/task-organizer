@@ -3,6 +3,8 @@ import { useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import SpacingWrapper from '../shared/components/UIElements/SpacingWrapper';
+import Card from '../shared/components/UIElements/Card';
+import styles from './MyLists.module.css'
 
 let MASTERLIST = [
     {
@@ -117,7 +119,9 @@ const MyLists = props => {
             <h2>Number of lists: {userMasterList.length}</h2>
             <ul>
                 {userMasterList.map(eachWholeList => (
-                    <h3><Link to={`/${userId}/myLists/${eachWholeList.listId}`}>{eachWholeList.title}</Link></h3>
+                    <div className={styles.padding}>
+                        <Card header={eachWholeList.title} buttonText="Cancel" to={`/${userId}/myLists/${eachWholeList.listId}`}>Dummy text</Card>
+                    </div>
                 ))}
             </ul>
 
