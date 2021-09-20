@@ -24,10 +24,10 @@ const ListContent = props => {
                             <div className="custom-checkbox custom-control">
                                 <input
                                     className="custom-control-input"
-                                    id="exampleCustomCheckbox12"
+                                    id={props.id}
                                     type="checkbox"
                                 />
-                                    <label className="custom-control-label" for="exampleCustomCheckbox12">
+                                    <label className="custom-control-label" for={props.id}>
                                         &nbsp;
                                     </label>
                             </div>

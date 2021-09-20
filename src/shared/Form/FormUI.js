@@ -6,7 +6,7 @@ import SpacingWrapper from '../components/UIElements/SpacingWrapper';
 
 // Required: props.title, props.id, props.buttonText, props.onSubmit
 // Required: props.inputs => [{ title, id, validators, type (optional) , errorText (optional), placeholder (optional), initialValidity (optional) }, {}, ...]
-// Optional: props.icon, props.defaultStyle, props.initialFormValidity
+// Optional: props.icon, props.defaultStyle, props.initialFormValidity, props.extraButton
 
 const FormUI = props => {
     const [formState, inputHandler, setFormData] = useForm(
@@ -51,6 +51,7 @@ const FormUI = props => {
                                     ))}
                                 </div>
                                 <button className={`btn btn-primary btn-xl ${!formState.isValid ? 'disabled' : ''}`} id="submitButton" type="submit">{props.buttonText}</button>
+                                {props.extraButton && props.extraButton}
                             </form>
                         </div>
                     </div>

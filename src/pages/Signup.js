@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import FormUI from '../shared/Form/FormUI';
 import { AuthContext } from '../shared/context/auth-context';
-import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from '../shared/util/validators';
+import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../shared/util/validators';
 
 let USERS = [
     {
@@ -29,35 +29,33 @@ let USERS = [
 ]
 
 
-const Login = () => {
-    const auth = useContext(AuthContext)
+const Signup = () => {
+    const auth = useContext(AuthContext);
 
-    const LoginHandler = event => {
+
+    const SignupHandler = event => {
         event.preventDefault();
-        alert('Log-in clicked.');
+        alert('Signup clicked.');
         auth.login();
     }
-
-    const extraButton = <span className='pl-3'>
-        <Link
-            to='/signup'
-            className={'btn btn-danger btn-xl'}
-        >
-            Sign-up
-        </Link>
-    </span>
 
     return (
     <React.Fragment>
         <FormUI
-            id="login"
-            title="Login"
-            buttonText="Log-in"
-            onSubmit={LoginHandler}
+            id="signup"
+            title="Sign-up"
+            buttonText="Sign-up"
+            onSubmit={SignupHandler}
             icon
             defaultStyle
-            extraButton={extraButton}
             inputs={[
+                {
+                    title: 'Name',
+                    id: 'name',
+                    type: 'name',
+                    validators: [VALIDATOR_REQUIRE()],
+                    errorText: 'The field cannot be empty.'
+                },
                 {
                     title: 'Email',
                     id: 'email',
@@ -77,4 +75,4 @@ const Login = () => {
     </React.Fragment>);
 };
 
-export default Login;
+export default Signup;

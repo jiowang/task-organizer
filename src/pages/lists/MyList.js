@@ -216,6 +216,7 @@ const MyList = props => {
                                         <ul className={`${listStyles['list-group']} list-group-flush`}>
                                             {wantedList.listItems.map(item => (
                                                     <ListContent
+                                                        id={item.contentId}
                                                         heading={item.content}
                                                         subheading="testing"
                                                         badge="hello" 
