@@ -249,8 +249,12 @@ const MyList = props => {
         </SpacingWrapper>
         
 
-        <Modal>
-
+        <Modal
+            title="Are you sure you want to delete?"
+            show={openDeleteWarning}
+            onCancel={closeDeleteWarningHandler}
+        >
+            You cannot undo once deleted.
         </Modal>
 
         <Modal
@@ -273,7 +277,8 @@ const MyList = props => {
             </form>
         </Modal>
 
-        <Modal 
+        <Modal
+            title="New Content"
             show={openAddContent}
             onCancel={closeAddContentHandler}    
         >

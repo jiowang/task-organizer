@@ -53,6 +53,7 @@ const Input = props => {
   const element =
     props.element === 'input' ? (
       <input
+        className={`${props.defaultStyle ? 'form-control' : ''}`}
         id={props.id}
         type={props.type}
         placeholder={props.placeholder}
@@ -72,8 +73,8 @@ const Input = props => {
 
   return (
     <div
-      className={`${styles['form-control']} ${!inputState.isValid && inputState.isTouched &&
-        styles['form-control--invalid']}`}
+      className={`${props.defaultStyle ? '' : styles['form-control']} ${!inputState.isValid && inputState.isTouched &&
+        styles['invalid']}`}
     >
       <label htmlFor={props.id}>{props.label}</label>
       {element}

@@ -2,7 +2,7 @@ import React from 'react';
 
 import SpacingWrapper from '../shared/components/UIElements/SpacingWrapper';
 
-const Login = () => {
+const Test = () => {
     return (
     <React.Fragment>
         <SpacingWrapper>

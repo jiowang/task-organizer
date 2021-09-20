@@ -12,6 +12,8 @@ import MainNavigation from './shared/components/Navigation/MainNavigation';
 import Footer from './shared/components/Footer';
 
 import Test from './DELETE/Test.js';
+import { validate, VALIDATOR_REQUIRE } from './shared/util/validators.js';
+import FormUI from './shared/Form/FormUI.js';
 
 
 import './App.css';
@@ -44,7 +46,26 @@ const App = () => {
         </Route>
 
         <Route path='/test' exact>
-          <Test />
+          <FormUI title="Test though" id="test form" buttonText="send" icon inputs={
+            [
+              {
+                title: 'Hey',
+                id: 'food',
+                initialValidity: true,
+                validators: [VALIDATOR_REQUIRE()],
+                errorText: "shwoejfhioejfoi"
+              },
+              {
+                title: 'Hewewy',
+                id: 'foowewed',
+                placeholder: 'yewewes',
+                initialValidity: true,
+                validators: [VALIDATOR_REQUIRE()],
+                errorText: "shwoejfhioejfoi"
+              }
+            ]
+          }
+          />
         </Route>
 
         <Redirect to='/home' />
