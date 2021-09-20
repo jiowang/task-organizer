@@ -2,11 +2,10 @@ import React from 'react';
 import { useForm } from '../hooks/form-hook';
 
 import Input from './Input';
-import { validate } from '../util/validators'
 import SpacingWrapper from '../components/UIElements/SpacingWrapper';
 
 // Required: props.title, props.id, props.buttonText, props.onSubmit
-// Required: props.inputs => {{ title, id, validators, errorText (optional), placeholder (optional), initialValidity (optional) }, {}, ...}
+// Required: props.inputs => [{ title, id, validators, type (optional) , errorText (optional), placeholder (optional), initialValidity (optional) }, {}, ...]
 // Optional: props.icon, props.defaultStyle, props.initialFormValidity
 
 const FormUI = props => {
@@ -41,6 +40,7 @@ const FormUI = props => {
                                             id={input.id}
                                             element="input"
                                             defaultStyle
+                                            type={input.type}
                                             label={input.title}
                                             validators={input.validators}
                                             errorText={input.errorText}

@@ -1,5 +1,7 @@
 import React from 'react';
 
+import FormUI from '../shared/Form/FormUI';
+import { validate, VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from '../shared/util/validators';
 import SpacingWrapper from '../shared/components/UIElements/SpacingWrapper';
 
 let USERS = [
@@ -27,11 +29,37 @@ let USERS = [
 
 
 const Login = () => {
+    const LoginHandler = event => {
+        event.preventDefault();
+        alert('Log-in clicked.');
+    }
+
     return (
     <React.Fragment>
-        <SpacingWrapper>
-            <h2>login</h2>
-        </SpacingWrapper>
+            <FormUI
+                id="login"
+                title="Login"
+                buttonText="Log-in"
+                onSubmit={LoginHandler}
+                icon
+                defaultStyle
+                inputs={[
+                    {
+                        title: 'Email',
+                        id: 'email',
+                        type: 'email',
+                        validators: [VALIDATOR_EMAIL()],
+                        errorText: 'Please enter a valid email.'
+                    },
+                    {
+                        title: 'Password',
+                        id: 'password',
+                        type: 'password',
+                        validators: [VALIDATOR_MINLENGTH(5)],
+                        errorText: 'Password must be at least 5 characters.',
+                    }
+                ]}
+            />
     </React.Fragment>);
 };
 
