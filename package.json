@@ -1,5 +1,5 @@
 {
-  "name": "schedule-organizer",
+  "name": "task-organizer",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
